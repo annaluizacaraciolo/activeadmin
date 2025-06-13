@@ -21,7 +21,11 @@ module ActiveAdmin
 
         # Provide the AA translation to the blank input field.
         def include_blank
-          I18n.t "active_admin.any" if super
+          if options.key?(:include_blank)
+            options[:include_blank] && I18n.t "active_admin.any" 
+          else 
+            super
+          end
         end
 
         def input_html_options_name
